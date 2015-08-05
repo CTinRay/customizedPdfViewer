@@ -3,4 +3,5 @@
     top:0px;
     left:0px;
     width:100%;
+    z-index:10;     /* Prevent it from being overlapped by content */
 };
