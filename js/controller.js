@@ -3,7 +3,24 @@
 	
 
 var model = {
-    materials: undefined,
+    materials: [
+	{
+	    name: "test1.pdf",
+	    url: "pdf/test.pdf",
+	    type: "PDF"
+	},
+	{
+	    name: "test2.pdf",
+	    url: "pdf/test.pdf",
+	    type: "PDF"
+	},
+	{
+	    name: "test3.pdf",
+	    url: "pdf/test.pdf",
+	    type: "PDF"
+	}
+	  
+    ],
     nowMaterial: undefined
 };
 
@@ -15,6 +32,10 @@ var controller = {
 	return model.materials;
     },
 
+    getNowMaterial: function(){
+	return model.nowMaterial;
+    },
+    
     setNowMaterial: function( nowMaterial ){
 	model.nowMaterial = nowMaterial;
 	view.updateViewer();
@@ -30,7 +51,7 @@ var controller = {
         
     init: function(){
 	view.showMaterialList();
-	$("sidebarSwitchButton").click( controller.turnOnSidebar );
+	$("#sidebarSwitchButton").click( controller.turnOnSidebar );
     }
 };
 
@@ -47,7 +68,7 @@ var view = {
 	    show: function(){
 		var nowMaterial = controller.getNowMaterial();
 		$("#outerContainer").show();
-		DEFAULT_URL = controller.getNowPdfUrl();
+		DEFAULT_URL = nowMaterial.url;
 		webViewerLoad();
 	    },
 	    hide: function(){
@@ -73,10 +94,11 @@ var view = {
 	    }
 	}
     },
-		    
+    
+    
     showMaterialList: function(){
 	var materials = controller.getMaterials();
-	for( material in materials ){
+	for( var material of materials ){
 	    var li = $( "<li></li>" )
 		    .text( material.name )
 		    .click( function(material){			
@@ -89,7 +111,8 @@ var view = {
 	}
     },
 
-    updateViewer: function(){	
+    updateViewer: function(){
+	view.nowViewer = view.nowViewer || view.viewers.PDFViewer;
 	view.nowViewer.hide();
 	var nowMaterial = controller.getNowMaterial();
 	view.nowViewer = view.viewers[ nowMaterial.type + "Viewer" ];

@@ -5,6 +5,22 @@
     top:0px;
     left:0px;
     height:100%;
+    width: 250px;
+    background-color:white;
+    z-index: 10000; 		/*PDF viewer toolbar has z-index 9999*/
+}
 
-    
+#sidebarSwitchDiv{
+    height:100%;
+    display:flex;
+    position:fixed;
+    top:0px;
+    left:0px;
+    align-items: center;
+}
+
+#sidebarSwitchButton{
+    height:20%;
+    border: none;
+    width:auto;
 }
