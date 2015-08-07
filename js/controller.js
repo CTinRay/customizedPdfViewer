@@ -6,7 +6,7 @@ var model = {
     materials: [
 	{
 	    name: "Homepage",
-	    url: "content/cover.html",
+	    url: "content/homepage.html",
 	    type: "HTML"
 	},
 
