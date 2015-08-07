@@ -2623,7 +2623,8 @@ var OverlayManager = {
           !(container = element.parentNode)) {
         throw new Error('Not enough parameters.');
       } else if (this.overlays[name]) {
-        throw new Error('The overlay is already registered.');
+        // Customize: comment out ...        
+        //throw new Error('The overlay is already registered.');
       }
       this.overlays[name] = { element: element,
                               container: container,
@@ -7238,6 +7239,7 @@ window.addEventListener('scalechange', function scalechange(evt) {
   updateViewarea();
 }, true);
 
+console.log( "add pagechange event listener " );
 window.addEventListener('pagechange', function pagechange(evt) {
   var page = evt.pageNumber;
   if (evt.previousPageNumber !== page) {

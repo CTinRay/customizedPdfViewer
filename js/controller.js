@@ -78,6 +78,8 @@ var view = {
 	    },
 	    hide: function(){
 		$("#outerContainer").hide();
+		window.removeEventListener('DOMMouseScroll', handleMouseWheel);
+		window.removeEventListener('mousewheel', handleMouseWheel);
 	    }
 	},
 
