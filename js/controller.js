@@ -5,6 +5,12 @@
 var model = {
     materials: [
 	{
+	    name: "Homepage",
+	    url: "content/cover.html",
+	    type: "HTML"
+	},
+
+	{
 	    name: "Test1",
 	    url: "content/test.pdf",
 	    type: "PDF"
@@ -54,6 +60,7 @@ var controller = {
         
     init: function(){
 	view.showMaterialList();
+	controller.setNowMaterial( model.materials[0] );
 	$("#sidebarSwitchButton").click( controller.turnOnSidebar );
     }
 };
