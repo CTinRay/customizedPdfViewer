@@ -16,7 +16,8 @@
 * 資料呈現在主要部份的方式：
  * PDF：從 `viewer/PDFViewer.html` 中載入PDF Viewer進入內容區塊（`<div id="contentViewer">`），並在呼叫PDF Viewer初始化函式前設定PDF的URL。
  * HTML：目前沒有規劃特別對HTML做一個Viewer，直接載入HTML資料進入頁面內容區塊（`<div id="contentViewer">`）。
-* 在側邊欄中，
+* MCV架構
+ * model: 目前只有materials存放各個資料（material）
 
 ## 關於PDFjs的修改與一些資訊
 
