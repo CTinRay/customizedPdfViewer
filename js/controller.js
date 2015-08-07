@@ -9,23 +9,23 @@ var model = {
     materials: [
 	{
 	    name: "Homepage",
-	    url: "content/homepage.html",
+	    url: "materials/homepage.html",
 	    type: "HTML"
 	},
 
 	{
 	    name: "Test1",
-	    url: "content/test.pdf",
+	    url: "materials/test.pdf",
 	    type: "PDF"
 	},
 	{
 	    name: "Compressed.tracemonkey",
-	    url: "content/compressed.tracemonkey-pldi-09.pdf",
+	    url: "materials/compressed.tracemonkey-pldi-09.pdf",
 	    type: "PDF"
 	},
 	{
 	    name: "HTML Content",
-	    url: "content/content.html",
+	    url: "materials/content.html",
 	    type: "HTML"
 	}
 	  
