@@ -27,6 +27,7 @@
 
 'use strict';
 
+console.log( "viewer.js loaded" );
 var DEFAULT_URL = '/pdf/compressed.tracemonkey-pldi-09.pdf';
 var DEFAULT_SCALE_DELTA = 1.1;
 var MIN_SCALE = 0.25;
@@ -6794,6 +6795,10 @@ window.PDFView = PDFViewerApplication; // obsolete name, using it as an alias
 
 
 function webViewerLoad(evt) {
+  //Customized: move eventListeber here
+  window.addEventListener('DOMMouseScroll', handleMouseWheel);
+  window.addEventListener('mousewheel', handleMouseWheel);
+
   PDFViewerApplication.initialize().then(webViewerInitialized);
 }
 
@@ -7286,8 +7291,9 @@ function handleMouseWheel(evt) {
   }
 }
 
-window.addEventListener('DOMMouseScroll', handleMouseWheel);
-window.addEventListener('mousewheel', handleMouseWheel);
+// Customized: move to init function
+//window.addEventListener('DOMMouseScroll', handleMouseWheel);
+//window.addEventListener('mousewheel', handleMouseWheel);
 
 window.addEventListener('click', function click(evt) {
   if (SecondaryToolbar.opened &&

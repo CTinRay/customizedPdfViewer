@@ -10,8 +10,8 @@ var model = {
 	    type: "PDF"
 	},
 	{
-	    name: "test2.pdf",
-	    url: "pdf/test.pdf",
+	    name: "compressed.tracemonkey",
+	    url: "pdf/compressed.tracemonkey-pldi-09.pdf",
 	    type: "PDF"
 	},
 	{
@@ -43,10 +43,12 @@ var controller = {
 
     turnOnSidebar: function(){
 	view.showSidebar();
+	$("#contentViewerContainer").click( controller.turnOffSidebar );
     },
 
     turnOffSidebar: function(){
-	view.turnOffSidebar();
+	view.hideSidebar();
+	$("#contentViewerContainer").off( "click", controller.turnOffSidebar );
     },
         
     init: function(){
@@ -65,11 +67,14 @@ var view = {
 	// (Follow the naming rule is important.
 	//  Because some functions in object `view` rely on the name to find the viewer. )
 	PDFViewer: {
-	    show: function(){
+	    show: function(){		
 		var nowMaterial = controller.getNowMaterial();
-		$("#outerContainer").show();
-		DEFAULT_URL = nowMaterial.url;
-		webViewerLoad();
+		var onLoad = function (){
+		    DEFAULT_URL = nowMaterial.url;
+		    webViewerLoad();
+
+		};
+		$("#contentViewerContainer").load( "viewers/PDFViewer.html", onLoad );
 	    },
 	    hide: function(){
 		$("#outerContainer").hide();
