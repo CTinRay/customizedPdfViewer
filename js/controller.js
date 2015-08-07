@@ -1,12 +1,15 @@
 'use strict';
 
-	
+
+
 
 var model = {
+
+    // The first material will be taken as homepage.
     materials: [
 	{
 	    name: "Homepage",
-	    url: "content/cover.html",
+	    url: "content/homepage.html",
 	    type: "HTML"
 	},
 
@@ -26,8 +29,8 @@ var model = {
 	    type: "HTML"
 	}
 	  
-    ],
-    nowMaterial: undefined
+    ]
+    
 };
 
 
@@ -43,24 +46,40 @@ var controller = {
     },
     
     setNowMaterial: function( nowMaterial ){
+
 	model.nowMaterial = nowMaterial;
+
+	// Close sidebar as one material is selected.
 	controller.turnOffSidebar();
 	view.updateViewer();
     },
 
     turnOnSidebar: function(){
+
 	view.showSidebar();
+
+	// Add event listener so that when sidebar is open, user can turn it off
+	// by clicking the content viewer part.
 	$("#contentViewerContainer").click( controller.turnOffSidebar );
     },
 
     turnOffSidebar: function(){
+
 	view.hideSidebar();
+
+	// Because the sidebar has been turned off,
+	// remove the event listener to avoid some potential problems.
 	$("#contentViewerContainer").off( "click", controller.turnOffSidebar );
     },
         
     init: function(){
+
+	// Show the list of material according to `model.materials`.
 	view.showMaterialList();
+
+	// Take the first material as homepage, and set it as the viewing material.
 	controller.setNowMaterial( model.materials[0] );
+	
 	$("#sidebarSwitchButton").click( controller.turnOnSidebar );
     }
 };
@@ -112,7 +131,7 @@ var view = {
 	}
     },
     
-    
+    // Render the material list according to the materials in model.   
     showMaterialList: function(){
 	var materials = controller.getMaterials();
 	for( var material of materials ){
@@ -128,6 +147,7 @@ var view = {
 	}
     },
 
+    // Load the viewer of now being viewed material.
     updateViewer: function(){
 	view.nowViewer = view.nowViewer || view.viewers.PDFViewer;
 	view.nowViewer.hide();
@@ -136,12 +156,14 @@ var view = {
 	view.nowViewer.show();	
     },
 
+    // Show the sidebar.
     showSidebar: function(){
 	$("#sidebar").show();
 	//$("#sidebar").animate( {left: "0px" }, 1000, "linear" ) ;
 	$("#sidebarSwitchDiv").hide();
     },
 
+    // Hide the sidebar.
     hideSidebar: function(){	
 	// $("#sidebar").animate( {left: "calc( 0 - 100% )" }, 100, "linear",
 	// 		       function(){ $("#sidebar").hide(); } ) ;

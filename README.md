@@ -1,7 +1,24 @@
 
 # Customized PDF Viewer
 
-## 實做、修改與PDFjs的一些資訊
+## 主程式功能
+
+* 頁面左側有一個按鈕，可以打開側邊欄，裡面資料選單。
+* 整個頁面會呈現現在正在瀏覽的資料(material)。
+
+## 主程式架構
+
+* 目前支援以下幾個資料類別：
+ * PDF
+ * HTML
+ * Video （未實做）
+* 頁面的內容區塊是 `<div id="contentViewer">` ，裡面會載入資料的瀏覽器（Viewer）。不同種類的資料可能會有各自的瀏覽器(Viewer)，這些瀏覽器的名稱為`資料類別 + "Viewer"`。
+* 資料呈現在主要部份的方式：
+ * PDF：從 `viewer/PDFViewer.html` 中載入PDF Viewer進入內容區塊（`<div id="contentViewer">`），並在呼叫PDF Viewer初始化函式前設定PDF的URL。
+ * HTML：目前沒有規劃特別對HTML做一個Viewer，直接載入HTML資料進入頁面內容區塊（`<div id="contentViewer">`）。
+* 在側邊欄中，
+
+## 關於PDFjs的修改與一些資訊
 
 * Viewer 初始化函式
  * 修改: 註解 `pdfjs/web/viewer.js line: 7022` 取消在頁面載入完成後的自動初始化。
@@ -17,6 +34,7 @@
  * 實做：當按鈕`Show PDF`被按下時，Viewer才會再次出現。
  * 實做：並且還在Viewer額外增加了一個按鈕`Exit`，當按下時Viewer又會被隱藏。
  * 實做：增加一些Viewer( div with id `outerContainer`)的CSS屬性 : `position: fixed`, `width:100%`, 等等。以讓Viewer可以固定在頁面上方。
+* 因為這個頁面可能除了 PDF 以外還又其他種 Viewer，並且 PDF Viewer 在每次載入新文件時都會被重新初始化，所以有一些原來的邏輯被我更改了。（應該）所有pdfjs中被更改的部份之前都會被加上Customize的註解。
 
 # 檔案們
 * index.html 包含 viewer 部份還有 content 部份。
