@@ -1,14 +1,16 @@
 #sidebar{
     position:fixed;
-    display:none;
-    position:fixed;
+    display: none;
     top:0px;
     left:0px;
     height:100%;
     width: 250px;
-    background-color:white;
+    background-color:#1A86A4;
     z-index: 10000; 		/*PDF viewer toolbar has z-index 9999*/
+    box-shadow: 0px 0px 5px 1px gray;
+    overflow:hidden;
 }
+
 
 #sidebarSwitchDiv{
     height:100%;
@@ -18,9 +20,51 @@
     left:0px;
     align-items: center;
 }
-
+ 
 #sidebarSwitchButton{
-    height:20%;
-    border: none;
-    width:auto;
+    background-color: white ;
+    border: medium none;
+    border-color: blue;
+    border-style: none;
+    botrder-width: 0;
+    font-size: 0.75em;
+    border-radius: 0px 3px 3px 0px;
+    height: 30%;
+
+    box-shadow: 0px 0px 5px 1px #0F98B6;
+    color: #1A86A4;
+}
+
+#materialList{
+    font-size:medium;
+    color:white;
+    list-style: none;
+}
+
+#materialList{
+    font-size:1em;
+    color:white;
+}
+
+#materialList div{
+    padding:10px;
+    width:100%;
+}
+
+#materialList div:hover{
+    background-color: #1E687D;
+}
+
+.navHead {
+    margin-top:20px;
+    margin-bottom:20px;
+    display:block;
+    text-align:center;
+}
+
+.navTitle {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    
 }

@@ -26,7 +26,6 @@ http://sourceforge.net/adobe/cmap/wiki/License/
 
 
 		<!-- PDF Viewer FIles -->
-		<link rel="stylesheet" href="pdfjs/web/viewer.css"/>
 		<script src="pdfjs/web/compatibility.js"></script>
 		<!-- This snippet is used in production (included from viewer.html) -->
 		<link rel="resource" type="pdfjs/web/application/l10n" href="locale/locale.properties"/>
@@ -48,14 +47,20 @@ http://sourceforge.net/adobe/cmap/wiki/License/
 
 
 		<!-- Customize Start From Here -->
-		<div id="sidebar"  >
-			<ul id="materialList">
+		<nav id="sidebar"  >
+			<div class="navHead">
+				<span class="navTitle">
+					HTML Package
+				</span>
+			</div>
+			<div id="materialList">
 				
-			</ul>
-		</div>
+			</div>
+		</nav>
+		
 
 		<div id="sidebarSwitchDiv">
-			<button type="button" id="sidebarSwitchButton" >▶</button>
+			<button type="button" id="sidebarSwitchButton" >║</button>
 		</div>
 	</body>
 </html>

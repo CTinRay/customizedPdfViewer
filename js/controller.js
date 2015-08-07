@@ -5,19 +5,19 @@
 var model = {
     materials: [
 	{
-	    name: "test1.pdf",
-	    url: "pdf/test.pdf",
+	    name: "Test1",
+	    url: "content/test.pdf",
 	    type: "PDF"
 	},
 	{
-	    name: "compressed.tracemonkey",
-	    url: "pdf/compressed.tracemonkey-pldi-09.pdf",
+	    name: "Compressed.tracemonkey",
+	    url: "content/compressed.tracemonkey-pldi-09.pdf",
 	    type: "PDF"
 	},
 	{
-	    name: "test3.pdf",
-	    url: "pdf/test.pdf",
-	    type: "PDF"
+	    name: "HTML Content",
+	    url: "content/content.html",
+	    type: "HTML"
 	}
 	  
     ],
@@ -38,6 +38,7 @@ var controller = {
     
     setNowMaterial: function( nowMaterial ){
 	model.nowMaterial = nowMaterial;
+	controller.turnOffSidebar();
 	view.updateViewer();
     },
 
@@ -77,18 +78,20 @@ var view = {
 		$("#contentViewerContainer").load( "viewers/PDFViewer.html", onLoad );
 	    },
 	    hide: function(){
-		$("#outerContainer").hide();
+		$("#contentViewerContainer").empty();
 		window.removeEventListener('DOMMouseScroll', handleMouseWheel);
 		window.removeEventListener('mousewheel', handleMouseWheel);
+		$("#fileInput").remove();
 	    }
 	},
 
 	HTMLViewer: {
 	    show: function(){
-		// To be implemented.
+		var nowMaterial = controller.getNowMaterial();
+		$("#contentViewerContainer").load( nowMaterial.url );
 	    },
 	    hide: function(){
-		// To be implemented.
+		$("#contentViewerContainer").empty();
 	    }
 	},
 
@@ -106,7 +109,7 @@ var view = {
     showMaterialList: function(){
 	var materials = controller.getMaterials();
 	for( var material of materials ){
-	    var li = $( "<li></li>" )
+	    var div = $( "<div/>" )
 		    .text( material.name )
 		    .click( function(material){			
 			return function(){
@@ -114,7 +117,7 @@ var view = {
 			    controller.setNowMaterial( material );
 			};
 		    }(material));			  
-	    $( "#materialList" ).append( li );
+	    $( "#materialList" ).append( div );
 	}
     },
 
@@ -128,10 +131,13 @@ var view = {
 
     showSidebar: function(){
 	$("#sidebar").show();
+	//$("#sidebar").animate( {left: "0px" }, 1000, "linear" ) ;
 	$("#sidebarSwitchDiv").hide();
     },
 
     hideSidebar: function(){	
+	// $("#sidebar").animate( {left: "calc( 0 - 100% )" }, 100, "linear",
+	// 		       function(){ $("#sidebar").hide(); } ) ;
 	$("#sidebar").hide();
 	$("#sidebarSwitchDiv").show();
     }
